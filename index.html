@@ -3653,17 +3653,32 @@
                 return;
             }
             
-            const element = document.getElementById('editor-content');
+            // Create a temporary element for PDF generation
+            const tempElement = document.createElement('div');
+            tempElement.style.cssText = 'position: fixed; top: -9999px; left: -9999px; width: 800px; background: white; padding: 55px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);';
+            tempElement.innerHTML = generateTemplate();
+            
+            document.body.appendChild(tempElement);
+            
             const opt = {
                 margin: 10,
                 filename: `${resumeData.personalInfo.name || 'resume'}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true
+                },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             
-            html2pdf().set(opt).from(element).save();
-            showToast('Downloading PDF...', 'info');
+            html2pdf().set(opt).from(tempElement).save().then(() => {
+                document.body.removeChild(tempElement);
+                showToast('Downloading PDF...', 'info');
+            }).catch(err => {
+                document.body.removeChild(tempElement);
+                showToast('Error generating PDF: ' + err.message, 'error');
+            });
         });
 
         // Save to Cloud
