@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,9 @@
     :root {
       --primary: #4361ee;
       --secondary: #3a0ca3;
+      --accent: #f72585;
+      --success: #4cc9f0;
+      --warning: #f72585;
       --dark: #1e293b;
       --light: #f8fafc;
       --gray: #e2e8f0;
@@ -27,6 +29,7 @@
       --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
       --transition: all 0.2s ease;
     }
+    
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -35,69 +38,119 @@
       color: var(--text-primary);
       line-height: 1.6;
     }
+    
     body.dark-mode {
       background: #0f172a;
       color: var(--text-light);
     }
+    
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
+    
     /* Header */
     header {
-      background: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
+    
     body.dark-mode header {
-      background: #1e293b;
+      background: linear-gradient(135deg, #2563eb, #4338ca);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
+    
     .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 0;
     }
+    
     .logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--primary);
+      color: white;
       text-decoration: none;
     }
+    
     .header-actions {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
+    
     .theme-toggle {
-      background: transparent;
+      background: rgba(255, 255, 255, 0.2);
       border: none;
       font-size: 1.2rem;
-      color: var(--text-secondary);
+      color: white;
       cursor: pointer;
       transition: var(--transition);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
     .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .auth-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .login-btn {
+      background: white;
       color: var(--primary);
     }
+    
+    .signup-btn {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .logout-btn {
+      background: var(--accent);
+      color: white;
+    }
+    
     /* Main Content */
     .main-content {
       display: flex;
       gap: 2rem;
       padding: 2rem 0;
     }
+    
     @media (max-width: 1200px) {
       .main-content {
         flex-direction: column;
       }
     }
+    
     /* Sidebar */
     .sidebar {
       width: 320px;
@@ -107,13 +160,16 @@
       padding: 1.5rem;
       height: fit-content;
     }
+    
     body.dark-mode .sidebar {
       background: #1e293b;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
+    
     .sidebar-section {
       margin-bottom: 2rem;
     }
+    
     .sidebar-title {
       display: flex;
       align-items: center;
@@ -123,15 +179,18 @@
       font-size: 1.2rem;
       font-weight: 600;
     }
+    
     .form-group {
       margin-bottom: 1.5rem;
     }
+    
     .form-label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
       color: var(--text-secondary);
     }
+    
     .form-control {
       width: 100%;
       padding: 0.75rem;
@@ -140,20 +199,24 @@
       font-family: inherit;
       transition: var(--transition);
     }
+    
     body.dark-mode .form-control {
       background: var(--gray-dark);
       border-color: rgba(255, 255, 255, 0.2);
       color: var(--text-light);
     }
+    
     .form-control:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
     }
+    
     textarea.form-control {
       resize: vertical;
       min-height: 100px;
     }
+    
     .btn {
       display: inline-flex;
       align-items: center;
@@ -166,53 +229,66 @@
       cursor: pointer;
       transition: var(--transition);
     }
+    
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
     }
+    
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
+    
     .btn-outline {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-primary);
     }
+    
     body.dark-mode .btn-outline {
       border-color: rgba(255, 255, 255, 0.2);
       color: var(--text-light);
     }
+    
     .btn-outline:hover {
       background: var(--gray);
       border-color: var(--primary);
     }
+    
     body.dark-mode .btn-outline:hover {
       background: rgba(255, 255, 255, 0.1);
     }
+    
     /* Template Selector */
     .template-selector {
       margin-bottom: 1.5rem;
     }
+    
     .template-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
+    
     .template-item {
       cursor: pointer;
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
+      position: relative;
     }
+    
     .template-item:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
     }
+    
     .template-item.selected {
-      box-shadow: 0 0 0 3px var(--primary);
+      box-shadow: 0 0 0 3px var(--accent);
     }
+    
     .template-preview {
       height: 120px;
       display: flex;
@@ -221,8 +297,9 @@
       color: white;
       font-weight: 600;
       font-size: 1.1rem;
-      background: linear-gradient(135deg, #4361ee, #3a0ca3);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
     }
+    
     .template-preview.apollo { background: linear-gradient(135deg, #4361ee, #3a0ca3); }
     .template-preview.terra { background: linear-gradient(135deg, #f97316, #ea580c); }
     .template-preview.tempe { background: linear-gradient(135deg, #059669, #047857); }
@@ -243,6 +320,7 @@
     .template-preview.finance { background: linear-gradient(135deg, #d8b4fe, #c084fc); }
     .template-preview.legal { background: linear-gradient(135deg, #a7f3d0, #6ee7b7); }
     .template-preview.artistic { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+    
     .template-name {
       padding: 0.75rem;
       background: var(--white);
@@ -250,14 +328,17 @@
       color: var(--text-primary);
       text-align: center;
     }
+    
     body.dark-mode .template-name {
       background: rgba(255, 255, 255, 0.05);
     }
+    
     .template-type {
       font-size: 0.75rem;
       color: var(--text-secondary);
       font-weight: 400;
     }
+    
     /* Editor Area */
     .editor-area {
       flex: 1;
@@ -265,6 +346,7 @@
       flex-direction: column;
       gap: 1.5rem;
     }
+    
     .editor-toolbar {
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
@@ -277,10 +359,12 @@
       gap: 0.5rem;
       flex-wrap: wrap;
     }
+    
     body.dark-mode .editor-toolbar {
       background: rgba(30, 41, 59, 0.9);
       border-color: rgba(255, 255, 255, 0.1);
     }
+    
     .toolbar-group {
       display: flex;
       align-items: center;
@@ -289,14 +373,17 @@
       padding-right: 0.75rem;
       margin-right: 0.75rem;
     }
+    
     body.dark-mode .toolbar-group {
       border-color: rgba(255, 255, 255, 0.1);
     }
+    
     .toolbar-group:last-child {
       border-right: none;
       padding-right: 0;
       margin-right: 0;
     }
+    
     .toolbar-btn {
       background: transparent;
       border: none;
@@ -310,16 +397,20 @@
       cursor: pointer;
       transition: var(--transition);
     }
+    
     .toolbar-btn:hover {
       background: var(--gray);
       color: var(--primary);
     }
+    
     body.dark-mode .toolbar-btn:hover {
       background: rgba(255, 255, 255, 0.1);
     }
+    
     .toolbar-btn:active {
       transform: translateY(1px);
     }
+    
     .editor-content {
       flex: 1;
       background: var(--white);
@@ -332,23 +423,28 @@
       overflow-y: auto;
       transition: var(--transition);
     }
+    
     body.dark-mode .editor-content {
       background: rgba(30, 41, 59, 0.9);
       border-color: rgba(255, 255, 255, 0.1);
       color: var(--text-light);
     }
+    
     .editor-content[contenteditable="true"]:focus {
       outline: none;
     }
+    
     .editor-content p {
       margin-bottom: 1rem;
     }
+    
     .editor-content h1 {
       font-size: 2.5rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
       color: var(--text-primary);
     }
+    
     .editor-content h2 {
       font-size: 1.8rem;
       font-weight: 700;
@@ -357,23 +453,28 @@
       border-bottom: 2px solid var(--primary);
       padding-bottom: 0.5rem;
     }
+    
     .editor-content h3 {
       font-size: 1.4rem;
       font-weight: 600;
       margin: 1.2rem 0 0.8rem;
       color: var(--text-primary);
     }
+    
     .editor-content ul {
       margin: 1rem 0;
       padding-left: 1.5rem;
     }
+    
     .editor-content ol {
       margin: 1rem 0;
       padding-left: 1.5rem;
     }
+    
     .editor-content li {
       margin-bottom: 0.5rem;
     }
+    
     .editor-content blockquote {
       border-left: 4px solid var(--primary);
       margin: 1.5rem 0;
@@ -381,9 +482,11 @@
       background: rgba(67, 97, 238, 0.05);
       font-style: italic;
     }
+    
     body.dark-mode .editor-content blockquote {
       background: rgba(67, 97, 238, 0.1);
     }
+    
     /* Resume Templates */
     .resume-template {
       padding: 60px;
@@ -394,27 +497,34 @@
       min-height: 297mm;
       margin: 0 auto;
       position: relative;
+      border: 1px solid #eee;
     }
+    
     body.dark-mode .resume-template {
       background: #1e293b;
+      border-color: #334155;
     }
+    
     /* Apollo Template */
     .template-apollo {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .apollo-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #4361ee;
     }
+    
     .apollo-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #4361ee;
       margin-bottom: 0.5rem;
     }
+    
     .apollo-contact {
       display: flex;
       justify-content: center;
@@ -422,6 +532,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .apollo-contact span {
       display: flex;
       align-items: center;
@@ -429,9 +540,11 @@
       color: #4361ee;
       font-size: 1.2rem;
     }
+    
     .apollo-section {
       margin-bottom: 30px;
     }
+    
     .apollo-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -440,45 +553,54 @@
       border-bottom: 2px solid #4361ee;
       padding-bottom: 8px;
     }
+    
     .apollo-experience-item {
       margin-bottom: 20px;
     }
+    
     .apollo-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .apollo-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .apollo-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .apollo-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Terra Template */
     .template-terra {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .terra-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #f97316;
     }
+    
     .terra-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #f97316;
       margin-bottom: 0.5rem;
     }
+    
     .terra-contact {
       display: flex;
       justify-content: center;
@@ -486,6 +608,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .terra-contact span {
       display: flex;
       align-items: center;
@@ -493,9 +616,11 @@
       color: #f97316;
       font-size: 1.2rem;
     }
+    
     .terra-section {
       margin-bottom: 30px;
     }
+    
     .terra-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -504,45 +629,54 @@
       border-bottom: 2px solid #f97316;
       padding-bottom: 8px;
     }
+    
     .terra-experience-item {
       margin-bottom: 20px;
     }
+    
     .terra-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .terra-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .terra-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .terra-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Tempe Template */
     .template-tempe {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .tempe-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #059669;
     }
+    
     .tempe-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #059669;
       margin-bottom: 0.5rem;
     }
+    
     .tempe-contact {
       display: flex;
       justify-content: center;
@@ -550,6 +684,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .tempe-contact span {
       display: flex;
       align-items: center;
@@ -557,9 +692,11 @@
       color: #059669;
       font-size: 1.2rem;
     }
+    
     .tempe-section {
       margin-bottom: 30px;
     }
+    
     .tempe-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -568,45 +705,54 @@
       border-bottom: 2px solid #059669;
       padding-bottom: 8px;
     }
+    
     .tempe-experience-item {
       margin-bottom: 20px;
     }
+    
     .tempe-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .tempe-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .tempe-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .tempe-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Aurora Template */
     .template-aurora {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .aurora-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #764ba2;
     }
+    
     .aurora-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #764ba2;
       margin-bottom: 0.5rem;
     }
+    
     .aurora-contact {
       display: flex;
       justify-content: center;
@@ -614,6 +760,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .aurora-contact span {
       display: flex;
       align-items: center;
@@ -621,9 +768,11 @@
       color: #764ba2;
       font-size: 1.2rem;
     }
+    
     .aurora-section {
       margin-bottom: 30px;
     }
+    
     .aurora-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -632,6 +781,7 @@
       position: relative;
       padding-left: 30px;
     }
+    
     .aurora-section-title::before {
       content: "";
       position: absolute;
@@ -642,48 +792,57 @@
       height: 3px;
       background: linear-gradient(135deg, #4361ee, #764ba2);
     }
+    
     .aurora-experience-item {
       margin-bottom: 20px;
       padding-left: 20px;
       border-left: 3px solid #764ba2;
     }
+    
     .aurora-job-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: #764ba2;
     }
+    
     .aurora-company {
       font-size: 1.2rem;
       font-weight: 600;
       color: #8b5cf6;
       margin: 5px 0;
     }
+    
     .aurora-date {
       font-size: 1.1rem;
       color: #764ba2;
       margin-bottom: 10px;
     }
+    
     .aurora-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Nova Template */
     .template-nova {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .nova-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #db2777;
     }
+    
     .nova-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #db2777;
       margin-bottom: 0.5rem;
     }
+    
     .nova-contact {
       display: flex;
       justify-content: center;
@@ -691,6 +850,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .nova-contact span {
       display: flex;
       align-items: center;
@@ -698,9 +858,11 @@
       color: #db2777;
       font-size: 1.2rem;
     }
+    
     .nova-section {
       margin-bottom: 30px;
     }
+    
     .nova-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -709,45 +871,54 @@
       border-bottom: 2px solid #db2777;
       padding-bottom: 8px;
     }
+    
     .nova-experience-item {
       margin-bottom: 20px;
     }
+    
     .nova-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .nova-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .nova-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .nova-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Classic Template */
     .template-classic {
       font-family: 'Times New Roman', serif;
       color: #000;
     }
+    
     .classic-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #000;
     }
+    
     .classic-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #000;
       margin-bottom: 0.5rem;
     }
+    
     .classic-contact {
       display: flex;
       justify-content: center;
@@ -755,6 +926,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .classic-contact span {
       display: flex;
       align-items: center;
@@ -762,9 +934,11 @@
       color: #000;
       font-size: 1.2rem;
     }
+    
     .classic-section {
       margin-bottom: 25px;
     }
+    
     .classic-section-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -775,45 +949,54 @@
       border-bottom: 1px solid #000;
       padding-bottom: 5px;
     }
+    
     .classic-experience-item {
       margin-bottom: 20px;
     }
+    
     .classic-job-title {
       font-size: 1.2rem;
       font-weight: 600;
       color: #000;
     }
+    
     .classic-company {
       font-size: 1.1rem;
       color: #000;
       margin: 5px 0;
     }
+    
     .classic-date {
       font-size: 1rem;
       color: #000;
       margin-bottom: 10px;
     }
+    
     .classic-description {
       color: #000;
       margin-left: 15px;
     }
+    
     /* Modern Template */
     .template-modern {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .modern-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #ea580c;
     }
+    
     .modern-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #ea580c;
       margin-bottom: 0.5rem;
     }
+    
     .modern-contact {
       display: flex;
       justify-content: center;
@@ -821,6 +1004,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .modern-contact span {
       display: flex;
       align-items: center;
@@ -828,9 +1012,11 @@
       color: #ea580c;
       font-size: 1.2rem;
     }
+    
     .modern-section {
       margin-bottom: 30px;
     }
+    
     .modern-section-title {
       font-size: 1.7rem;
       font-weight: 700;
@@ -839,6 +1025,7 @@
       position: relative;
       padding-left: 30px;
     }
+    
     .modern-section-title::before {
       content: "";
       position: absolute;
@@ -849,48 +1036,57 @@
       height: 3px;
       background: #ea580c;
     }
+    
     .modern-experience-item {
       margin-bottom: 20px;
       padding-left: 20px;
       border-left: 3px solid #ea580c;
     }
+    
     .modern-job-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: #ea580c;
     }
+    
     .modern-company {
       font-size: 1.2rem;
       font-weight: 600;
       color: #f97316;
       margin: 5px 0;
     }
+    
     .modern-date {
       font-size: 1.1rem;
       color: #ea580c;
       margin-bottom: 10px;
     }
+    
     .modern-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Professional Template */
     .template-professional {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .professional-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #c2410c;
     }
+    
     .professional-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #c2410c;
       margin-bottom: 0.5rem;
     }
+    
     .professional-contact {
       display: flex;
       justify-content: center;
@@ -898,6 +1094,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .professional-contact span {
       display: flex;
       align-items: center;
@@ -905,9 +1102,11 @@
       color: #c2410c;
       font-size: 1.2rem;
     }
+    
     .professional-section {
       margin-bottom: 30px;
     }
+    
     .professional-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -916,45 +1115,54 @@
       border-bottom: 2px solid #c2410c;
       padding-bottom: 8px;
     }
+    
     .professional-experience-item {
       margin-bottom: 20px;
     }
+    
     .professional-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .professional-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .professional-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .professional-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Elegant Template */
     .template-elegant {
       font-family: 'Playfair Display', serif;
       color: #1e293b;
     }
+    
     .elegant-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #7c3aed;
     }
+    
     .elegant-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #7c3aed;
       margin-bottom: 0.5rem;
     }
+    
     .elegant-contact {
       display: flex;
       justify-content: center;
@@ -962,6 +1170,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .elegant-contact span {
       display: flex;
       align-items: center;
@@ -969,9 +1178,11 @@
       color: #7c3aed;
       font-size: 1.2rem;
     }
+    
     .elegant-section {
       margin-bottom: 30px;
     }
+    
     .elegant-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -980,45 +1191,54 @@
       border-bottom: 2px solid #7c3aed;
       padding-bottom: 8px;
     }
+    
     .elegant-experience-item {
       margin-bottom: 20px;
     }
+    
     .elegant-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .elegant-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .elegant-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .elegant-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Creative Template */
     .template-creative {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .creative-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #fbbf24;
     }
+    
     .creative-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #fbbf24;
       margin-bottom: 0.5rem;
     }
+    
     .creative-contact {
       display: flex;
       justify-content: center;
@@ -1026,6 +1246,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .creative-contact span {
       display: flex;
       align-items: center;
@@ -1033,9 +1254,11 @@
       color: #fbbf24;
       font-size: 1.2rem;
     }
+    
     .creative-section {
       margin-bottom: 30px;
     }
+    
     .creative-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1044,6 +1267,7 @@
       position: relative;
       padding-left: 30px;
     }
+    
     .creative-section-title::before {
       content: "";
       position: absolute;
@@ -1054,48 +1278,57 @@
       height: 3px;
       background: #fbbf24;
     }
+    
     .creative-experience-item {
       margin-bottom: 20px;
       padding-left: 20px;
       border-left: 3px solid #fbbf24;
     }
+    
     .creative-job-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: #fbbf24;
     }
+    
     .creative-company {
       font-size: 1.2rem;
       font-weight: 600;
       color: #f59e0b;
       margin: 5px 0;
     }
+    
     .creative-date {
       font-size: 1.1rem;
       color: #fbbf24;
       margin-bottom: 10px;
     }
+    
     .creative-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Minimal Template */
     .template-minimal {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .minimal-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #1e293b;
     }
+    
     .minimal-name {
       font-size: 2.8rem;
       font-weight: 600;
       color: #1e293b;
       margin-bottom: 0.5rem;
     }
+    
     .minimal-contact {
       display: flex;
       justify-content: center;
@@ -1103,6 +1336,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .minimal-contact span {
       display: flex;
       align-items: center;
@@ -1110,9 +1344,11 @@
       color: #475569;
       font-size: 1.2rem;
     }
+    
     .minimal-section {
       margin-bottom: 25px;
     }
+    
     .minimal-section-title {
       font-size: 1.5rem;
       font-weight: 600;
@@ -1121,45 +1357,54 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
+    
     .minimal-experience-item {
       margin-bottom: 20px;
     }
+    
     .minimal-job-title {
       font-size: 1.2rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .minimal-company {
       font-size: 1.1rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .minimal-date {
       font-size: 1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .minimal-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Executive Template */
     .template-executive {
       font-family: 'Georgia', serif;
       color: #1e293b;
     }
+    
     .executive-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #9333ea;
     }
+    
     .executive-name {
       font-size: 3rem;
       font-weight: 700;
       color: #9333ea;
       margin-bottom: 0.5rem;
     }
+    
     .executive-contact {
       display: flex;
       justify-content: center;
@@ -1167,6 +1412,7 @@
       margin-top: 1.5rem;
       flex-wrap: wrap;
     }
+    
     .executive-contact span {
       display: flex;
       align-items: center;
@@ -1174,9 +1420,11 @@
       color: #9333ea;
       font-size: 1.2rem;
     }
+    
     .executive-section {
       margin-bottom: 30px;
     }
+    
     .executive-section-title {
       font-size: 1.8rem;
       font-weight: 700;
@@ -1185,6 +1433,7 @@
       position: relative;
       padding-left: 20px;
     }
+    
     .executive-section-title::before {
       content: "";
       position: absolute;
@@ -1196,50 +1445,59 @@
       background: #9333ea;
       border-radius: 50%;
     }
+    
     .executive-experience-item {
       margin-bottom: 25px;
       padding: 20px;
       background: rgba(147, 51, 234, 0.05);
       border-radius: 12px;
     }
+    
     .executive-job-title {
       font-size: 1.5rem;
       font-weight: 700;
       color: #9333ea;
       margin-bottom: 8px;
     }
+    
     .executive-company {
       font-size: 1.3rem;
       font-weight: 600;
       color: #a78bfa;
       margin-bottom: 8px;
     }
+    
     .executive-date {
       font-size: 1.1rem;
       color: #9333ea;
       margin-bottom: 15px;
     }
+    
     .executive-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Tech Template */
     .template-tech {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .tech-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #059669;
     }
+    
     .tech-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #059669;
       margin-bottom: 0.5rem;
     }
+    
     .tech-contact {
       display: flex;
       justify-content: center;
@@ -1247,6 +1505,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .tech-contact span {
       display: flex;
       align-items: center;
@@ -1254,9 +1513,11 @@
       color: #059669;
       font-size: 1.2rem;
     }
+    
     .tech-section {
       margin-bottom: 30px;
     }
+    
     .tech-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1265,45 +1526,54 @@
       border-bottom: 2px solid #059669;
       padding-bottom: 8px;
     }
+    
     .tech-experience-item {
       margin-bottom: 20px;
     }
+    
     .tech-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .tech-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .tech-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .tech-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Corporate Template */
     .template-corporate {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .corporate-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #fde68a;
     }
+    
     .corporate-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #fde68a;
       margin-bottom: 0.5rem;
     }
+    
     .corporate-contact {
       display: flex;
       justify-content: center;
@@ -1311,6 +1581,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .corporate-contact span {
       display: flex;
       align-items: center;
@@ -1318,9 +1589,11 @@
       color: #fde68a;
       font-size: 1.2rem;
     }
+    
     .corporate-section {
       margin-bottom: 30px;
     }
+    
     .corporate-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1329,45 +1602,54 @@
       border-bottom: 2px solid #fde68a;
       padding-bottom: 8px;
     }
+    
     .corporate-experience-item {
       margin-bottom: 20px;
     }
+    
     .corporate-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .corporate-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .corporate-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .corporate-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Academic Template */
     .template-academic {
       font-family: 'Playfair Display', serif;
       color: #1e293b;
     }
+    
     .academic-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 3px solid #7c3aed;
     }
+    
     .academic-name {
       font-size: 3rem;
       font-weight: 700;
       color: #7c3aed;
       margin-bottom: 0.5rem;
     }
+    
     .academic-contact {
       display: flex;
       justify-content: center;
@@ -1375,6 +1657,7 @@
       margin-top: 1.5rem;
       flex-wrap: wrap;
     }
+    
     .academic-contact span {
       display: flex;
       align-items: center;
@@ -1382,9 +1665,11 @@
       color: #7c3aed;
       font-size: 1.2rem;
     }
+    
     .academic-section {
       margin-bottom: 30px;
     }
+    
     .academic-section-title {
       font-size: 1.8rem;
       font-weight: 700;
@@ -1393,6 +1678,7 @@
       position: relative;
       padding-left: 20px;
     }
+    
     .academic-section-title::before {
       content: "";
       position: absolute;
@@ -1404,50 +1690,59 @@
       background: #7c3aed;
       border-radius: 50%;
     }
+    
     .academic-experience-item {
       margin-bottom: 25px;
       padding: 20px;
       background: rgba(124, 58, 237, 0.05);
       border-radius: 12px;
     }
+    
     .academic-job-title {
       font-size: 1.5rem;
       font-weight: 700;
       color: #7c3aed;
       margin-bottom: 8px;
     }
+    
     .academic-company {
       font-size: 1.3rem;
       font-weight: 600;
       color: #9333ea;
       margin-bottom: 8px;
     }
+    
     .academic-date {
       font-size: 1.1rem;
       color: #7c3aed;
       margin-bottom: 15px;
     }
+    
     .academic-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Healthcare Template */
     .template-healthcare {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .healthcare-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #059669;
     }
+    
     .healthcare-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #059669;
       margin-bottom: 0.5rem;
     }
+    
     .healthcare-contact {
       display: flex;
       justify-content: center;
@@ -1455,6 +1750,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .healthcare-contact span {
       display: flex;
       align-items: center;
@@ -1462,9 +1758,11 @@
       color: #059669;
       font-size: 1.2rem;
     }
+    
     .healthcare-section {
       margin-bottom: 30px;
     }
+    
     .healthcare-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1473,45 +1771,54 @@
       border-bottom: 2px solid #059669;
       padding-bottom: 8px;
     }
+    
     .healthcare-experience-item {
       margin-bottom: 20px;
     }
+    
     .healthcare-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .healthcare-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .healthcare-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .healthcare-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Education Template */
     .template-education {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .education-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #f87171;
     }
+    
     .education-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #f87171;
       margin-bottom: 0.5rem;
     }
+    
     .education-contact {
       display: flex;
       justify-content: center;
@@ -1519,6 +1826,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .education-contact span {
       display: flex;
       align-items: center;
@@ -1526,9 +1834,11 @@
       color: #f87171;
       font-size: 1.2rem;
     }
+    
     .education-section {
       margin-bottom: 30px;
     }
+    
     .education-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1537,45 +1847,54 @@
       border-bottom: 2px solid #f87171;
       padding-bottom: 8px;
     }
+    
     .education-experience-item {
       margin-bottom: 20px;
     }
+    
     .education-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .education-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .education-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .education-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Finance Template */
     .template-finance {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .finance-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #c084fc;
     }
+    
     .finance-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #c084fc;
       margin-bottom: 0.5rem;
     }
+    
     .finance-contact {
       display: flex;
       justify-content: center;
@@ -1583,6 +1902,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .finance-contact span {
       display: flex;
       align-items: center;
@@ -1590,9 +1910,11 @@
       color: #c084fc;
       font-size: 1.2rem;
     }
+    
     .finance-section {
       margin-bottom: 30px;
     }
+    
     .finance-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1601,45 +1923,54 @@
       border-bottom: 2px solid #c084fc;
       padding-bottom: 8px;
     }
+    
     .finance-experience-item {
       margin-bottom: 20px;
     }
+    
     .finance-job-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: #1e293b;
     }
+    
     .finance-company {
       font-size: 1.2rem;
       color: #475569;
       margin: 5px 0;
     }
+    
     .finance-date {
       font-size: 1.1rem;
       color: #64748b;
       margin-bottom: 10px;
     }
+    
     .finance-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Legal Template */
     .template-legal {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .legal-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #059669;
     }
+    
     .legal-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #059669;
       margin-bottom: 0.5rem;
     }
+    
     .legal-contact {
       display: flex;
       justify-content: center;
@@ -1647,6 +1978,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .legal-contact span {
       display: flex;
       align-items: center;
@@ -1654,9 +1986,11 @@
       color: #059669;
       font-size: 1.2rem;
     }
+    
     .legal-section {
       margin-bottom: 30px;
     }
+    
     .legal-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -1665,6 +1999,7 @@
       position: relative;
       padding-left: 20px;
     }
+    
     .legal-section-title::before {
       content: "";
       position: absolute;
@@ -1676,50 +2011,59 @@
       background: #059669;
       border-radius: 50%;
     }
+    
     .legal-experience-item {
       margin-bottom: 25px;
       padding: 20px;
       background: rgba(5, 150, 105, 0.05);
       border-radius: 12px;
     }
+    
     .legal-job-title {
       font-size: 1.5rem;
       font-weight: 700;
       color: #059669;
       margin-bottom: 8px;
     }
+    
     .legal-company {
       font-size: 1.3rem;
       font-weight: 600;
       color: #047857;
       margin-bottom: 8px;
     }
+    
     .legal-date {
       font-size: 1.1rem;
       color: #059669;
       margin-bottom: 15px;
     }
+    
     .legal-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* Artistic Template */
     .template-artistic {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
     }
+    
     .artistic-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
       border-bottom: 4px solid #f59e0b;
     }
+    
     .artistic-name {
       font-size: 2.8rem;
       font-weight: 800;
       color: #f59e0b;
       margin-bottom: 0.5rem;
     }
+    
     .artistic-contact {
       display: flex;
       justify-content: center;
@@ -1727,6 +2071,7 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+    
     .artistic-contact span {
       display: flex;
       align-items: center;
@@ -1734,9 +2079,11 @@
       color: #f59e0b;
       font-size: 1.2rem;
     }
+    
     .artistic-section {
       margin-bottom: 25px;
     }
+    
     .artistic-section-title {
       font-size: 1.7rem;
       font-weight: 700;
@@ -1745,6 +2092,7 @@
       position: relative;
       padding-left: 30px;
     }
+    
     .artistic-section-title::before {
       content: "";
       position: absolute;
@@ -1755,38 +2103,44 @@
       height: 3px;
       background: #f59e0b;
     }
+    
     .artistic-experience-item {
       margin-bottom: 20px;
       padding-left: 20px;
       border-left: 3px solid #f59e0b;
     }
+    
     .artistic-job-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: #f59e0b;
     }
+    
     .artistic-company {
       font-size: 1.2rem;
       font-weight: 600;
       color: #f97316;
       margin: 5px 0;
     }
+    
     .artistic-date {
       font-size: 1.1rem;
       color: #f59e0b;
       margin-bottom: 10px;
     }
+    
     .artistic-description {
       color: #475569;
       margin-left: 15px;
     }
+    
     /* AI Improve Button */
     .ai-improve-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--accent), var(--primary));
       color: white;
       border: none;
       border-radius: var(--radius);
@@ -1794,16 +2148,18 @@
       cursor: pointer;
       transition: var(--transition);
     }
+    
     .ai-improve-btn:hover {
-      background: #3a0ca3;
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+      box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
     }
+    
     .ai-improve-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
+    
     .spinner {
       display: inline-block;
       width: 1em;
@@ -1813,9 +2169,11 @@
       border-top-color: transparent;
       animation: spin 1s linear infinite;
     }
+    
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
     /* Toast Notifications */
     .toast {
       position: fixed;
@@ -1834,21 +2192,27 @@
       gap: 0.75rem;
       max-width: 300px;
     }
+    
     .toast.show {
       transform: translateX(0);
     }
+    
     .toast.toast-success {
       background: linear-gradient(135deg, #06d6a0, #2bb673);
     }
+    
     .toast.toast-error {
       background: linear-gradient(135deg, #ef4444, #dc2626);
     }
+    
     .toast.toast-info {
       background: linear-gradient(135deg, #118ab2, #077993);
     }
+    
     .toast i {
       font-size: 1.2rem;
     }
+    
     /* Modal */
     .modal {
       display: none;
@@ -1864,32 +2228,45 @@
       align-items: center;
       justify-content: center;
     }
+    
+    .modal.show {
+      display: flex;
+    }
+    
     .modal-content {
       background: var(--white);
       border-radius: var(--radius-xl);
       width: 100%;
       max-width: 500px;
       box-shadow: var(--shadow-lg);
+      position: relative;
     }
+    
     body.dark-mode .modal-content {
       background: #1e293b;
     }
+    
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.5rem 2rem;
       border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
     }
+    
     body.dark-mode .modal-header {
       border-color: rgba(255, 255, 255, 0.1);
     }
+    
     .modal-title {
       font-size: 1.25rem;
       font-weight: 600;
     }
+    
     .close-modal {
-      background: transparent;
+      background: rgba(255, 255, 255, 0.2);
       border: none;
       color: white;
       font-size: 1.5rem;
@@ -1902,13 +2279,16 @@
       justify-content: center;
       transition: var(--transition);
     }
+    
     .close-modal:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       transform: rotate(90deg);
     }
+    
     .modal-body {
       padding: 2rem;
     }
+    
     /* Footer */
     footer {
       text-align: center;
@@ -1919,53 +2299,65 @@
       border-top: 1px solid var(--border);
       font-weight: 500;
     }
+    
     footer a {
       color: var(--primary);
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
     }
+    
     footer a:hover {
       text-decoration: underline;
     }
+    
     /* Responsive Design */
     @media (max-width: 1200px) {
       .main-content {
         flex-direction: column;
       }
+      
       .sidebar {
         width: 100%;
       }
+      
       .template-grid {
         grid-template-columns: 1fr;
       }
     }
+    
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
       }
+      
       .header-actions {
         width: 100%;
         justify-content: center;
       }
+      
       .editor-toolbar {
         overflow-x: auto;
         flex-wrap: nowrap;
       }
+      
       .toolbar-group {
         margin-right: 1rem;
       }
     }
+    
     /* Print Styles */
     @media print {
       body * {
         visibility: hidden;
       }
+      
       .resume-template, .resume-template * {
         visibility: visible;
       }
+      
       .resume-template {
         position: absolute;
         left: 0;
@@ -1986,13 +2378,14 @@
         <a href="#" class="logo"><i class="fas fa-file-alt"></i><span>ResumeCraft Pro</span></a>
         <div class="header-actions">
           <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
-          <div id="auth-container">
+          <div id="auth-container" class="auth-buttons">
             <!-- Auth buttons will be inserted here -->
           </div>
         </div>
       </div>
     </div>
   </header>
+  
   <!-- Main Content -->
   <div class="container">
     <div class="main-content">
@@ -2018,6 +2411,7 @@
             <input type="text" id="address" class="form-control" placeholder="123 Main St, City, State">
           </div>
         </div>
+        
         <!-- Professional Summary -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-align-left"></i> Professional Summary</h3>
@@ -2027,30 +2421,35 @@
           </div>
           <button id="ai-summary-btn" class="btn btn-outline"><i class="fas fa-robot"></i> Improve with AI</button>
         </div>
+        
         <!-- Work Experience -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-briefcase"></i> Work Experience</h3>
           <div id="experience-container"></div>
           <button id="add-experience" class="btn btn-outline"><i class="fas fa-plus"></i> Add Experience</button>
         </div>
+        
         <!-- Education -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-graduation-cap"></i> Education</h3>
           <div id="education-container"></div>
           <button id="add-education" class="btn btn-outline"><i class="fas fa-plus"></i> Add Education</button>
         </div>
+        
         <!-- Projects -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-project-diagram"></i> Projects</h3>
           <div id="projects-container"></div>
           <button id="add-project" class="btn btn-outline"><i class="fas fa-plus"></i> Add Project</button>
         </div>
+        
         <!-- References -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-users"></i> References</h3>
           <div id="references-container"></div>
           <button id="add-reference" class="btn btn-outline"><i class="fas fa-plus"></i> Add Reference</button>
         </div>
+        
         <!-- Skills -->
         <div class="sidebar-section">
           <h3 class="sidebar-title"><i class="fas fa-star"></i> Skills</h3>
@@ -2060,6 +2459,7 @@
           </div>
           <div id="skills-tags"></div>
         </div>
+        
         <!-- Template Selector -->
         <div class="sidebar-section template-selector">
           <h3 class="sidebar-title"><i class="fas fa-palette"></i> Choose Template</h3>
@@ -2147,6 +2547,7 @@
           </div>
         </div>
       </div>
+      
       <!-- Editor Area -->
       <div class="editor-area">
         <!-- Editor Toolbar -->
@@ -2167,8 +2568,10 @@
             <button class="toolbar-btn" data-command="justifyFull"><i class="fas fa-align-justify"></i></button>
           </div>
         </div>
+        
         <!-- Editor Content -->
         <div id="editor-content" class="editor-content" contenteditable="true"></div>
+        
         <!-- Action Buttons -->
         <div class="editor-actions">
           <button id="download-pdf" class="btn btn-primary"><i class="fas fa-download"></i> Download PDF</button>
@@ -2177,8 +2580,10 @@
       </div>
     </div>
   </div>
+  
   <!-- Toast Notification -->
   <div id="toast" class="toast">Notification</div>
+  
   <!-- Auth Modal -->
   <div id="auth-modal" class="modal">
     <div class="modal-content">
@@ -2204,6 +2609,7 @@
       </div>
     </div>
   </div>
+  
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
@@ -2270,6 +2676,60 @@
         themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
       }
     });
+    
+    // Show auth buttons based on login state
+    function updateAuthButtons() {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        authContainer.innerHTML = `
+          <button class="logout-btn auth-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        `;
+        document.querySelector('.logout-btn').addEventListener('click', logout);
+      } else {
+        authContainer.innerHTML = `
+          <button class="login-btn auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+          <button class="signup-btn auth-btn"><i class="fas fa-user-plus"></i> Sign Up</button>
+        `;
+        document.querySelector('.login-btn').addEventListener('click', () => openAuthModal('Sign In'));
+        document.querySelector('.signup-btn').addEventListener('click', () => openAuthModal('Sign Up'));
+      }
+    }
+    
+    // Open auth modal
+    function openAuthModal(title) {
+      authModalTitle.textContent = title;
+      authModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close auth modal
+    function closeAuthModal() {
+      authModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    
+    // Login function
+    function login(email, password) {
+      // Simple validation
+      if (email && password) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        closeAuthModal();
+        updateAuthButtons();
+        showToast('Login successful!', 'success');
+        return true;
+      } else {
+        showToast('Please enter valid credentials', 'error');
+        return false;
+      }
+    }
+    
+    // Logout function
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userEmail');
+      updateAuthButtons();
+      showToast('Logged out successfully', 'info');
+    }
     
     // Update Resume Data
     function updateResumeData() {
@@ -2361,7 +2821,6 @@
       `;
     }
     
-    // Generate Terra Template
     function generateTerraTemplate() {
       return `
         <div class="resume-template template-terra">
@@ -2409,7 +2868,6 @@
       `;
     }
     
-    // Generate Tempe Template
     function generateTempeTemplate() {
       return `
         <div class="resume-template template-tempe">
@@ -2457,7 +2915,6 @@
       `;
     }
     
-    // Generate Aurora Template
     function generateAuroraTemplate() {
       return `
         <div class="resume-template template-aurora">
@@ -2505,7 +2962,6 @@
       `;
     }
     
-    // Generate Nova Template
     function generateNovaTemplate() {
       return `
         <div class="resume-template template-nova">
@@ -2553,7 +3009,6 @@
       `;
     }
     
-    // Generate Classic Template
     function generateClassicTemplate() {
       return `
         <div class="resume-template template-classic">
@@ -2601,7 +3056,6 @@
       `;
     }
     
-    // Generate Modern Template
     function generateModernTemplate() {
       return `
         <div class="resume-template template-modern">
@@ -2649,7 +3103,6 @@
       `;
     }
     
-    // Generate Professional Template
     function generateProfessionalTemplate() {
       return `
         <div class="resume-template template-professional">
@@ -2697,7 +3150,6 @@
       `;
     }
     
-    // Generate Elegant Template
     function generateElegantTemplate() {
       return `
         <div class="resume-template template-elegant">
@@ -2745,7 +3197,6 @@
       `;
     }
     
-    // Generate Creative Template
     function generateCreativeTemplate() {
       return `
         <div class="resume-template template-creative">
@@ -2793,7 +3244,6 @@
       `;
     }
     
-    // Generate Minimal Template
     function generateMinimalTemplate() {
       return `
         <div class="resume-template template-minimal">
@@ -2841,7 +3291,6 @@
       `;
     }
     
-    // Generate Executive Template
     function generateExecutiveTemplate() {
       return `
         <div class="resume-template template-executive">
@@ -2889,7 +3338,6 @@
       `;
     }
     
-    // Generate Tech Template
     function generateTechTemplate() {
       return `
         <div class="resume-template template-tech">
@@ -2937,7 +3385,6 @@
       `;
     }
     
-    // Generate Corporate Template
     function generateCorporateTemplate() {
       return `
         <div class="resume-template template-corporate">
@@ -2985,7 +3432,6 @@
       `;
     }
     
-    // Generate Academic Template
     function generateAcademicTemplate() {
       return `
         <div class="resume-template template-academic">
@@ -3033,7 +3479,6 @@
       `;
     }
     
-    // Generate Healthcare Template
     function generateHealthcareTemplate() {
       return `
         <div class="resume-template template-healthcare">
@@ -3081,7 +3526,6 @@
       `;
     }
     
-    // Generate Education Template
     function generateEducationTemplate() {
       return `
         <div class="resume-template template-education">
@@ -3129,7 +3573,6 @@
       `;
     }
     
-    // Generate Finance Template
     function generateFinanceTemplate() {
       return `
         <div class="resume-template template-finance">
@@ -3177,7 +3620,6 @@
       `;
     }
     
-    // Generate Legal Template
     function generateLegalTemplate() {
       return `
         <div class="resume-template template-legal">
@@ -3225,7 +3667,6 @@
       `;
     }
     
-    // Generate Artistic Template
     function generateArtisticTemplate() {
       return `
         <div class="resume-template template-artistic">
@@ -3626,32 +4067,35 @@
         showToast('No resume template found', 'error');
         return;
       }
-      const originalDisplay = element.style.display;
-      const originalPosition = element.style.position;
-      const originalTop = element.style.top;
       
-      // Make visible for PDF generation
-      element.style.display = 'block';
-      element.style.position = 'absolute';
-      element.style.top = '0';
-      element.style.left = '0';
-      element.style.width = '210mm';
-      element.style.backgroundColor = 'white';
+      // Create a temporary container for the PDF content
+      const tempContainer = document.createElement('div');
+      tempContainer.style.width = '210mm';
+      tempContainer.style.height = '297mm';
+      tempContainer.style.padding = '20px';
+      tempContainer.style.boxSizing = 'border-box';
+      tempContainer.innerHTML = element.innerHTML;
       
-      // Ensure body overflow is visible
-      document.body.style.overflow = 'visible';
+      // Append to body temporarily
+      document.body.appendChild(tempContainer);
+      
+      // Ensure the element has proper dimensions
+      tempContainer.style.position = 'absolute';
+      tempContainer.style.left = '-1000px';
+      tempContainer.style.top = '0';
+      tempContainer.style.zIndex = '10000';
       
       const opt = {
         margin: 10,
         filename: `${resumeData.personalInfo.name || 'resume'}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
-          scale: 3,
+          scale: 2,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff',
-          width: element.offsetWidth,
-          height: element.offsetHeight
+          width: tempContainer.offsetWidth,
+          height: tempContainer.offsetHeight
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak: { mode: ['css', 'legacy'] }
@@ -3659,22 +4103,17 @@
       
       setTimeout(() => {
         html2pdf()
-          .from(element)
+          .from(tempContainer)
           .set(opt)
           .save()
           .then(() => {
-            // Restore styles
-            setTimeout(() => {
-              element.style.display = originalDisplay;
-              element.style.position = originalPosition;
-              element.style.top = originalTop;
-              document.body.style.overflow = '';
-            }, 100);
+            // Clean up
+            document.body.removeChild(tempContainer);
           })
           .catch(err => {
             console.error('PDF generation error:', err);
             showToast('Failed to generate PDF. Please try again.', 'error');
-            element.style.display = originalDisplay;
+            document.body.removeChild(tempContainer);
           });
       }, 100);
     });
@@ -3710,6 +4149,34 @@
       });
     });
     
+    // Auth Form Handling
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = authEmail.value;
+      const password = authPassword.value;
+      login(email, password);
+    });
+    
+    // Close modal
+    closeModal.addEventListener('click', closeAuthModal);
+    
+    // Toggle auth
+    toggleAuth.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (authModalTitle.textContent === 'Sign In') {
+        authModalTitle.textContent = 'Sign Up';
+      } else {
+        authModalTitle.textContent = 'Sign In';
+      }
+    });
+    
+    // Close modal when clicking outside
+    authModal.addEventListener('click', (e) => {
+      if (e.target === authModal) {
+        closeAuthModal();
+      }
+    });
+    
     // Toast Notification
     function showToast(message, type = 'info') {
       toast.innerHTML = `
@@ -3723,6 +4190,7 @@
     }
     
     // Initialize
+    updateAuthButtons();
     updatePreview();
     
     // Set initial template selection
@@ -3730,4 +4198,3 @@
   </script>
 </body>
 </html>
-```
